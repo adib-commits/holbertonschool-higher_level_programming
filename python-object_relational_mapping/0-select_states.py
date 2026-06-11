@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-Lists all states from the database hbtn_0e_0_usa.
+This module connects to a MySQL database and
+lists all states ordered by id.
 """
 
 import MySQLdb
