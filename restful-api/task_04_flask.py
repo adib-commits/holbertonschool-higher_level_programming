@@ -39,17 +39,17 @@ def status():
 def get_user(username):
     """Return user information"""
 
-    if username in users:
-        return jsonify(users[username])
+    if username not in users:
+        return jsonify({"error": "User not found"}), 404
 
-    return jsonify({"error": "User not found"}), 404
+    return jsonify(users[username])
 
 
 @app.route("/add_user", methods=["POST"])
 def add_user():
     """Add a new user"""
 
-    data = request.get_json()
+    data = request.get_json(silent=True)
 
     if data is None:
         return jsonify({"error": "Invalid JSON"}), 400
@@ -62,11 +62,16 @@ def add_user():
     if username in users:
         return jsonify({"error": "Username already exists"}), 409
 
-    users[username] = data
+    users[username] = {
+        "username": username,
+        "name": data.get("name"),
+        "age": data.get("age"),
+        "city": data.get("city")
+    }
 
     return jsonify({
         "message": "User added",
-        "user": data
+        "user": users[username]
     }), 201
 
 
