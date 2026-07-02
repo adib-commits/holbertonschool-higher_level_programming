@@ -7,9 +7,8 @@ let i = 0;
 
 while (i < languages.length) {
   output += languages[i];
-  if (i !== languages.length - 1) {
     output += '\n';
-  }
+
   i++;
 }
 
