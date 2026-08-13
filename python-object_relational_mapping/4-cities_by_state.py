@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-Lists all cities with their corresponding state.
-"""
+"""Lists all cities from a database with their state names."""
 
 import MySQLdb
 import sys
@@ -20,8 +18,8 @@ if __name__ == "__main__":
 
     cur.execute(
         "SELECT cities.id, cities.name, states.name "
-        "FROM cities "
-        "JOIN states ON cities.state_id = states.id "
+        "FROM cities INNER JOIN states "
+        "ON cities.state_id = states.id "
         "ORDER BY cities.id ASC"
     )
 
