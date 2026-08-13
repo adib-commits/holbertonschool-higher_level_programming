@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-Displays all states matching the user input safely.
-"""
+"""Displays states matching a user-provided name safely."""
 
 import MySQLdb
 import sys
@@ -19,7 +17,7 @@ if __name__ == "__main__":
     cur = db.cursor()
 
     query = (
-        "SELECT * FROM states "
+        "SELECT id, name FROM states "
         "WHERE name = %s "
         "ORDER BY id ASC"
     )
